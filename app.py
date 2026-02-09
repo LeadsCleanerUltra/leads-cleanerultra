@@ -106,3 +106,4 @@ if uploaded_file:
     except Exception as e:
 
         st.error(f"Erreur : {e}")
+
