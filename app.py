@@ -9,7 +9,7 @@ st.set_page_config(page_title="LeadsCleaner Ultra", page_icon="🛡️", layout=
 if "auth" not in st.session_state:
     st.session_state.auth = False
 
-VALID_CODES = {"ESSAI-48H": "Trial", "CLE-PRO-2026": "Paid"}
+VALID_CODES = {"ESSAI-48H+": "Trial", "CLE-PRO-2026": "Paid"}
 # --- RÉCEPTION DE LA CLÉ APRÈS PAIEMENT ---
 if st.query_params.get("payment") == "success":
     st.balloons()
@@ -106,4 +106,5 @@ if uploaded_file:
     except Exception as e:
 
         st.error(f"Erreur : {e}")
+
 
