@@ -10,14 +10,20 @@ if "auth" not in st.session_state:
     st.session_state.auth = False
 
 VALID_CODES = {"ESSAI-48H": "Trial", "CLE-PRO-2026": "Paid"}
-
+# --- RÉCEPTION DE LA CLÉ APRÈS PAIEMENT ---
+if st.query_params.get("payment") == "success":
+    st.balloons()
+    st.success("✅ Paiement validé ! Bienvenue.")
+    st.info("Voici votre clé d'accès à copier ci-contre :")
+    st.code("CLE-PRO-2026", language="text")
+    st.divider()
 if not st.session_state.auth:
     st.title("🚀 LeadsCleaner Ultra Pro")
     col_a, col_b = st.columns(2)
     with col_a:
         st.info("### 🔑 Accès & Essai")
         st.write("Le code d'accès est envoyé après paiement ou sur demande.")
-        st.link_button("💳 S'ABONNER MAINTENANT", "https://buy.stripe.com/ton_lien_stripe", use_container_width=True)
+        st.link_button("💳 S'ABONNER MAINTENANT", "https://buy.stripe.com/28E3cv4Kj5vD8LWgdyc3m00", use_container_width=True)
     with col_b:
         st.success("### 🔓 Connexion")
         pwd = st.text_input("Code d'accès", type="password")
@@ -98,4 +104,5 @@ if uploaded_file:
             st.download_button(f"📥 TÉLÉCHARGER ({crm_format})", output.getvalue(), "leads_premium.csv", "text/csv", use_container_width=True)
             
     except Exception as e:
+
         st.error(f"Erreur : {e}")
